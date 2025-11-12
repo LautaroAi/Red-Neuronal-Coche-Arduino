@@ -122,7 +122,7 @@ El proyecto demostró la aplicabilidad de las redes neuronales en la robótica m
 - Utilizar redes neuronales convolucionales para el procesamiento de imágenes.
 
 ## Integrantes del Proyecto
-- [Nombre del miembro 1]
-- [Nombre del miembro 2]
+- Rivieri Lautaro
+- Montoro Federico
 
 Artículo Base: aprendemachinelearning.com/programa-un-coche-arduino-con-inteligencia-artificial/
