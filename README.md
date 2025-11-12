@@ -1,13 +1,16 @@
 # Coche Arduino con Inteligencia Artificial
 
 ## Descripción del Proyecto
-Este proyecto implementa una red neuronal en un coche Arduino para que pueda conducir de manera autónoma evitando obstáculos. El sistema utiliza machine learning para entrenar una red neuronal que controla los motores del coche.
+Este proyecto implementa una red neuronal en un coche Arduino para que pueda conducir de manera autónoma evitando obstáculos. El sistema utiliza machine learning para entrenar una red neuronal que controla los motores del coche, extendiendo la funcionalidad original con nuevos sensores y capacidades.
+
+
 
 ## Evolución del Proyecto
 ### Fase Inicial
 - Red neuronal en Python con 2 entradas (distancia y posición del obstáculo) y 4 salidas (control de 4 motores).
 - Entrenamiento con 9 patrones de entrada.
 - Transferencia de los pesos de la red a Arduino para la propagación hacia adelante.
+- Arquitectura: [2, 3, 4] con función de activación tanh
 
 ### Fase Mejorada
 Se agregaron dos nuevos sensores y una salida:
@@ -26,56 +29,89 @@ Se agregaron dos nuevos sensores y una salida:
    - `0`: Apagado
    - `1`: Encendido
 
-### Arquitectura de la Red Neuronal Mejorada
+### Arquitectura de la Red Neuronal
+1. **Arquitectura Original**
+- **Red Neuronal:** [2, 3, 4] (2 entradas, 3 ocultas, 4 salidas)
+- **Entradas:** Distancia y Posición del obstáculo
+- **Salidas:** Control de 4 motores DC
+- **Función de Activación:** Tangente hiperbólica (tanh)
+
+
+2. **Arquitectura Extendida**
 - **Capas**: [4, 6, 5] (4 entradas, 6 neuronas en la capa oculta, 5 salidas)
 - **Función de activación**: Tangente hiperbólica (tanh)
 - **Rango de entrada**: [-1, 1]
 - **Rango de salida**: [-1, 1] (luego se redondea a 0 o 1)
 
-### Tablas de Verdad por Miembro del Equipo
+### 👥 Tablas de Verdad por Miembro del Equipo
 
-#### Miembro 1
+#### Rivieri Lautaro
 - **Lógica del LED**: Se enciende cuando hay peso o cuando está siguiendo una línea.
-- [Incluir tabla de verdad del miembro 1]
 
-#### Miembro 2
+* 16 patrones de entrenamiento
+* Comportamiento estándar para obstáculos
+* LED como indicador multifuncional
+
+**Ejemplos de patrones:**
+```[-1, 0, -1, -1] → [1,0,0,1,0]``` # Avanzar, LED apagado
+
+```[-1, 0, 1, -1] → [1,0,0,1,1]``` # Avanzar, LED encendido (peso)
+
+```[-1, 0, -1, 1] → [1,0,0,1,1]``` # Avanzar, LED encendido (línea)
+
+#### Montoro Federico
 - **Lógica del LED**: Se enciende solo cuando hay peso, independientemente de la línea.
-- [Incluir tabla de verdad del miembro 2]
+16 patrones de entrenamiento
+
+- Comportamiento conservador con peso
+- Comportamiento agresivo siguiendo línea
+- LED como indicador de carga
+
+**Ejemplos de patrones:**
+`[-1, 0, -1, 1] → [1,0,0,1,0]` # Avanzar rápido, sin LED
+
+`[-1, 0, 1, 1] → [1,0,0,1,1]` # Avanzar lento, con LED (peso)
+
+`[1, 0, 1, -1] → [0,0,0,0,1]` # Parar con LED
+
+## 🎯 Enfoques de Resolución de Problemas
+### 🔍 Aprendizaje Supervisado
+- Dataset estructurado con patrones de entrenamiento
+- Entradas normalizadas (-1 a 1)
+- Salidas binarias para control discreto
+
+### 🧩 Descomposición Modular
+- **Capa Sensorial**: Adquisición de datos
+- **Capa Cognitiva**: Procesamiento con RNA
+- **Capa Motora**: Ejecución de acciones
+
+### 🔄 Transferencia de Conocimiento
+- Entrenamiento offline en Python
+- Implementación embebida en Arduino
+- Solo forward propagation en ejecución
+
+### ⚡ Optimización de Recursos
+- Minimalismo computacional
+- Eficiencia energética
+- Hardware estándar y accesible
+
+### 📊 Normalización de Datos
+- Entradas y salidas normalizadas en el rango [-1, 1]
+- Función de activación tanh para mejor convergencia
+
+### 🔁 Backpropagation
+- Algoritmo de entrenamiento para ajustar los pesos
+- Monitorización del coste durante el entrenamiento
 
 ## Código
 El repositorio contiene los siguientes archivos:
 
-- `codigo/red_neuronal_original.py`: Red neuronal original con 2 entradas y 4 salidas.
-- `codigo/red_neuronal_mejorada_miembro1.py`: Red neuronal del miembro 1 con 4 entradas y 5 salidas.
-- `codigo/red_neuronal_mejorada_miembro2.py`: Red neuronal del miembro 2 con 4 entradas y 5 salidas.
-- `codigo/arduino_coche_mejorado/arduino_coche_mejorado.ino`: Código Arduino para el coche con las nuevas funcionalidades.
+- `red_neuronal_original.py`: Red neuronal original con 2 entradas y 4 salidas.
+- `red_neuronal_mejorada_miembro1.py`: 
+- `red_neuronal_mejorada_miembro2.py`: 
 
 ## Resultados
 Las redes neuronales se entrenaron durante 40,000 épocas y mostraron una disminución en el coste, lo que indica un aprendizaje exitoso. Las predicciones de las redes se ajustaron a los valores esperados en la mayoría de los casos.
-
-## Enfoques de Resolución de Problemas
-1. **Aprendizaje Supervisado**: Se utilizó un conjunto de datos etiquetados para entrenar la red.
-2. **Normalización de Datos**: Las entradas y salidas se normalizaron en el rango [-1, 1].
-3. **Backpropagation**: Algoritmo de entrenamiento para ajustar los pesos.
-4. **Modularidad**: El código se estructuró en funciones y clases para facilitar su mantenimiento y comprensión.
-
-## Instalación y Uso
-1. Clonar el repositorio.
-2. Ejecutar los scripts de Python para entrenar las redes neuronales.
-3. Cargar el código Arduino en el coche.
-4. Asegurarse de que el hardware esté correctamente conectado.
-
-## Hardware Requerido
-- Placa Arduino Uno o Mega.
-- Shield de expansión de IO.
-- Controlador de motor L298N.
-- 4 motores DC y ruedas.
-- Servo motor SG90.
-- Sensor ultrasónico.
-- Sensor de peso (simulado).
-- Sensor de línea (simulado).
-- LED.
-- Baterías y chasis.
 
 ## Conclusiones
 El proyecto demostró la aplicabilidad de las redes neuronales en la robótica móvil, permitiendo que un coche Arduino tome decisiones autónomas. La adición de nuevos sensores y actuadores enriqueció el comportamiento del coche, haciendo que responda a más estímulos del ambiente.
@@ -89,4 +125,4 @@ El proyecto demostró la aplicabilidad de las redes neuronales en la robótica m
 - [Nombre del miembro 1]
 - [Nombre del miembro 2]
 
-
+Artículo Base: aprendemachinelearning.com/programa-un-coche-arduino-con-inteligencia-artificial/
