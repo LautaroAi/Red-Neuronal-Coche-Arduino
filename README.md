@@ -1,7 +1,15 @@
 # Coche Arduino con Inteligencia Artificial
 
+### 👥 Integrantes del Proyecto
+- Rivieri Lautaro
+- Montoro Federico
+
 ## 📋 Descripción del Proyecto
 Este proyecto implementa una red neuronal en un coche Arduino para que pueda conducir de manera autónoma evitando obstáculos. El sistema utiliza machine learning para entrenar una red neuronal que controla los motores del coche, extendiendo la funcionalidad original con nuevas capacidades inspiradas en los AGV (Automated Guided Vehicles) utilizados en entornos industriales y logísticos.
+
+<img align=left src='images/agv-1.jpg' alt='sleep cat' height='220'>
+<img src='images/agv-2.jpg' alt='sleep cat' height='220' >
+
 
 ## 🚀 Evolución del Proyecto
 ### Fase Inicial
@@ -11,8 +19,6 @@ Este proyecto implementa una red neuronal en un coche Arduino para que pueda con
 - Arquitectura: `[2, 3, 4]` con función de activación tanh
 
 ### Fase Mejorada
-Se agregaron dos nuevos sensores y una salida:
-
 #### Nuevas Entradas
 1. **Sensor de Peso**: Detecta si el coche lleva un paquete.
    - `-1`: Sin paquete
@@ -105,16 +111,27 @@ Se agregaron dos nuevos sensores y una salida:
 ## 📁 Código
 El repositorio contiene los siguientes archivos:
 
-- `red_neuronal_original.ipynb`: Red neuronal original con 2 entradas y 4 salidas.
-- `red_neuronal_modificada_1.ipynb`: Red neuronal con tablas de verdad - Rivieri Lautaro
-- `red_neuronal_modificada_2.ipynb`: Red neuronal con tablas de verdad - Montoro Federico
+- Red neuronal original con 2 entradas y 4 salidas.
+   - `red_neuronal_original.ipynb`
+- Red neuronal modificada con 1 tabla de verdad nueva por cada miembro
+   - `red_neuronal_rivieri.ipynb`
+   - `red_neuronal_montoro.ipynb`
+
+## Entrenamiento
+Ejecución dentro de Google Colab
+
+**Rivieri Lautaro**
+![Ejecución del entrenamiento dentro de Google Colab](images/entrenamiento-rivieri.png)
+**Montoro Federico**
+![Ejecución del entrenamiento dentro de Google Colab](images/entrenamiento-montoro.png)
+
 
 ## 🎯 Logros Principales
-✅ Sistema de navegación autónoma basado en RNA
-✅ Extensión AGV exitosa con sensores industriales
-✅ Implementación eficiente en plataforma embebida
-✅ Estrategias operacionales diferenciadas por miembro
-✅ Comportamientos adaptativos según contexto logístico
+- Sistema de navegación autónoma basado en RNA
+- Extensión AGV exitosa con sensores industriales
+- Implementación eficiente en plataforma embebida
+- Estrategias operacionales diferenciadas por miembro
+- Comportamientos adaptativos según contexto logístico
 
 ## ✨ Futuras Mejoras
 - Sensores adicionales: temperatura, humedad, inclinación
@@ -122,16 +139,25 @@ El repositorio contiene los siguientes archivos:
 - Comunicación WiFi para monitoreo remoto y telemetría
 - Sistema de localización indoor (IMU, odometría)
 
-** Mejoras Avanzadas AGV
-- Implementación de RNA en tiempo real en Arduino
-- Algoritmos de optimización de rutas logísticas
-- Sistema de aprendizaje continuo en operación
-- Visión artificial para navegación basada en landmarks
-- Coordinación multi-AGV para operaciones en flota
-- Interfaces HMI para supervisión humana
+---
 
-## 👥 Integrantes del Proyecto
-- Rivieri Lautaro
-- Montoro Federico
+- **Corto Plazo (1-3 meses)**
+   - Comunicación multi-AGV para flotas
+   - Sistema de localización inercial
+   - Optimización dinámica de rutas
 
-Artículo Base: http://www.aprendemachinelearning.com/programa-un-coche-arduino-con-inteligencia-artificial/
+- **Medio Plazo (3-6 meses)**
+   - Integración con sistemas ERP
+   - Sensores de temperatura/humedad para carga sensible
+   - Sistema de carga automática
+
+- **Largo Plazo (6+ meses)**
+   - Aprendizaje por refuerzo para mejora continua
+   -    omputer vision para navegación avanzada
+   - Integración con IoT industrial
+
+
+### Bibliografía:
+
+http://www.aprendemachinelearning.com/programa-un-coche-arduino-con-inteligencia-artificial/
+
