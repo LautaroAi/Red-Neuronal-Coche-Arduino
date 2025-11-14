@@ -33,7 +33,7 @@ Este proyecto implementa una red neuronal en un coche Arduino para que pueda con
    - `0`: Apagado
    - `1`: Encendido
 
-### ⚙ Arquitectura de la Red Neuronal
+## ⚙ Arquitectura de la Red Neuronal
 1. **Arquitectura Original**
 - **Red Neuronal:** `[2, 3, 4]` (2 entradas, 3 ocultas, 4 salidas)
 - **Entradas:** Distancia y Posición del obstáculo
@@ -46,7 +46,7 @@ Este proyecto implementa una red neuronal en un coche Arduino para que pueda con
 - **Rango de entrada**: [-1, 1]
 - **Rango de salida**: [-1, 1] (luego se redondea a 0 o 1)
 
-### 👥 Tablas de Verdad por miembro del equipo
+## 👥 Tablas de Verdad por miembro del equipo
 
 #### Rivieri Lautaro
 **Lógica del LED**: Se enciende cuando hay peso o cuando está siguiendo una línea.
@@ -55,13 +55,10 @@ Este proyecto implementa una red neuronal en un coche Arduino para que pueda con
 * Comportamiento estándar para obstáculos
 * LED como indicador multifuncional
 
-**Ejemplos de patrones:**
-
-`[-1, 0, -1, -1]` → `[1,0,0,1,0]` # Avanzar, LED apagado
-
-`[-1, 0, 1, -1]` → `[1,0,0,1,1]` # Avanzar, LED encendido (peso)
-
-`[-1, 0, -1, 1]` → `[1,0,0,1,1]` # Avanzar, LED encendido (línea)
+   **Ejemplos de patrones:**
+   - `[-1, 0, -1, -1]` → `[1,0,0,1,0]` # Avanzar, LED apagado
+   - `[-1, 0, 1, -1]` → `[1,0,0,1,1]` # Avanzar, LED encendido (peso)
+   - `[-1, 0, -1, 1]` → `[1,0,0,1,1]` # Avanzar, LED encendido (línea)
 
 **Entrenamiento:** Ejecución dentro de Google Colab
 ![Ejecución del entrenamiento dentro de Google Colab](images/entrenamiento-rivieri.png)
@@ -74,55 +71,42 @@ Este proyecto implementa una red neuronal en un coche Arduino para que pueda con
 - Comportamiento agresivo siguiendo línea
 - LED como indicador de carga
 
-**Ejemplos de patrones:**
-
-`[-1, 0, -1, 1]` → `[1,0,0,1,0]` # Avanzar rápido, sin LED
-
-`[-1, 0, 1, 1]` → `[1,0,0,1,1]` # Avanzar lento, con LED (peso)
-
-`[1, 0, 1, -1]` → `[0,0,0,0,1]` # Parar con LED
+   **Ejemplos de patrones:**
+   - `[-1, 0, -1, 1]` → `[1,0,0,1,0]` # Avanzar rápido, sin LED
+   - `[-1, 0, 1, 1]` → `[1,0,0,1,1]` # Avanzar lento, con LED (peso)
+   - `[1, 0, 1, -1]` → `[0,0,0,0,1]` # Parar con LED
 
 **Entrenamiento:** Ejecución dentro de Google Colab
 ![Ejecución del entrenamiento dentro de Google Colab](images/entrenamiento-montoro.png)
 
 ## 🎯 Enfoques de Resolución de Problemas
-### 🔍 Aprendizaje Supervisado
-- Dataset estructurado con patrones de entrenamiento
-- Entradas normalizadas (-1 a 1)
-- Salidas binarias para control discreto
+- **🔍 Aprendizaje Supervisado**
+   - Dataset estructurado con patrones de entrenamiento
+   - Entradas normalizadas (-1 a 1)
+   - Salidas binarias para control discreto
 
-### 🧩 Descomposición Modular
-- **Capa Sensorial**: Adquisición de datos
-- **Capa Cognitiva**: Procesamiento con RNA
-- **Capa Motora**: Ejecución de acciones
+- **🧩 Descomposición Modular**
+   - **Capa Sensorial**: Adquisición de datos
+   - **Capa Cognitiva**: Procesamiento con RNA
+   - **Capa Motora**: Ejecución de acciones
 
-### 🔄 Transferencia de Conocimiento
-- Entrenamiento offline en Python
-- Implementación embebida en Arduino
-- Solo forward propagation en ejecución
+- **🔄 Transferencia de Conocimiento**
+   - Entrenamiento offline en Python
+   - Implementación embebida en Arduino
+   - Solo forward propagation en ejecución
 
-### ⚡ Optimización de Recursos
-- Minimalismo computacional
-- Eficiencia energética
-- Hardware estándar y accesible
+* **⚡ Optimización de Recursos** 
+   - Minimalismo computacional
+   - Eficiencia energética
+   - Hardware estándar y accesible
 
-### 📊 Normalización de Datos
-- Entradas y salidas normalizadas en el rango [-1, 1]
-- Función de activación tanh para mejor convergencia
+- **📊 Normalización de Datos**
+   - Entradas y salidas normalizadas en el rango [-1, 1]
+   - Función de activación tanh para mejor convergencia
 
-### 🔁 Backpropagation
-- Algoritmo de entrenamiento para ajustar los pesos
-- Monitorización del coste durante el entrenamiento
-
-## 📁 Código
-El repositorio contiene los siguientes archivos:
-
-- Red neuronal original con 2 entradas y 4 salidas.
-   - `red_neuronal_original.ipynb`
-- Red neuronal modificada con 1 tabla de verdad nueva por cada miembro
-   - `red_neuronal_rivieri.ipynb`
-   - `red_neuronal_montoro.ipynb`
-
+- **🔁 Backpropagation**
+   - Algoritmo de entrenamiento para ajustar los pesos
+   - Monitorización del coste durante el entrenamiento
 
 ## 🎯 Logros Principales
 - Sistema de navegación autónoma basado en RNA
