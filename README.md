@@ -46,7 +46,7 @@ Este proyecto implementa una red neuronal en un coche Arduino para que pueda con
 - **Rango de entrada**: [-1, 1]
 - **Rango de salida**: [-1, 1] (luego se redondea a 0 o 1)
 
-### 👥 Tablas de Verdad por Miembro del Equipo
+### 👥 Tablas de Verdad por miembro del equipo
 
 #### Rivieri Lautaro
 **Lógica del LED**: Se enciende cuando hay peso o cuando está siguiendo una línea.
@@ -63,6 +63,9 @@ Este proyecto implementa una red neuronal en un coche Arduino para que pueda con
 
 `[-1, 0, -1, 1]` → `[1,0,0,1,1]` # Avanzar, LED encendido (línea)
 
+**Entrenamiento:** Ejecución dentro de Google Colab
+![Ejecución del entrenamiento dentro de Google Colab](images/entrenamiento-rivieri.png)
+
 #### Montoro Federico
 **Lógica del LED**: Se enciende solo cuando hay peso, independientemente de la línea.
 16 patrones de entrenamiento
@@ -78,6 +81,9 @@ Este proyecto implementa una red neuronal en un coche Arduino para que pueda con
 `[-1, 0, 1, 1]` → `[1,0,0,1,1]` # Avanzar lento, con LED (peso)
 
 `[1, 0, 1, -1]` → `[0,0,0,0,1]` # Parar con LED
+
+**Entrenamiento:** Ejecución dentro de Google Colab
+![Ejecución del entrenamiento dentro de Google Colab](images/entrenamiento-montoro.png)
 
 ## 🎯 Enfoques de Resolución de Problemas
 ### 🔍 Aprendizaje Supervisado
@@ -116,14 +122,6 @@ El repositorio contiene los siguientes archivos:
 - Red neuronal modificada con 1 tabla de verdad nueva por cada miembro
    - `red_neuronal_rivieri.ipynb`
    - `red_neuronal_montoro.ipynb`
-
-## Entrenamiento
-Ejecución dentro de Google Colab
-
-**Rivieri Lautaro**
-![Ejecución del entrenamiento dentro de Google Colab](images/entrenamiento-rivieri.png)
-**Montoro Federico**
-![Ejecución del entrenamiento dentro de Google Colab](images/entrenamiento-montoro.png)
 
 
 ## 🎯 Logros Principales
